@@ -1,6 +1,6 @@
 aiohttp
 requests
-youtube-dl
+https://github.com/ytdl-org/youtube-dl/archive/2019.09.28.zip
 git+git://github.com/google/chatbase-python.git
 https://github.com/pyrogram/pyrogram/archive/asyncio.zip
 Pillow
