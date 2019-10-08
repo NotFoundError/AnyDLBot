@@ -51,25 +51,8 @@ async def echo(bot, update):
     youtube_dl_username = None
     youtube_dl_password = None
     file_name = None
-    if "|" in url:
-        url_parts = url.split("|")
-        if len(url_parts) == 2:
-            url = url_parts[0]
-            file_name = url_parts[1]
-        elif len(url_parts) == 4:
-            url = url_parts[0]
-            file_name = url_parts[1]
-            youtube_dl_username = url_parts[2]
-            youtube_dl_password = url_parts[3]
-        else:
-            for entity in update.entities:
-                if entity.type == "text_link":
-                    url = entity.url
-                elif entity.type == "url":
-                    o = entity.offset
-                    l = entity.length
-                    url = url[o:o + l]
-        if url is not None:
+    cfname = update.text(" ")
+          cfkeyboard = [pyrogram.InlineKeyboardButton("Custom filename", callback_data=(cfname).encode("UTF-8")]
             url = url.strip()
         if file_name is not None:
             file_name = file_name.strip()
@@ -204,7 +187,9 @@ async def echo(bot, update):
                             callback_data=(cb_string_file).encode("UTF-8")
                         )
                     ]
-                inline_keyboard.append(ikeyboard)
+        inline_keyboard.append(ikeyboard)
+        inline_keyboard.append(cfkeyboard)
+
             if duration is not None:
                 cb_string_64 = "{}|{}|{}".format("audio", "64k", "mp3")
                 cb_string_128 = "{}|{}|{}".format("audio", "128k", "mp3")
