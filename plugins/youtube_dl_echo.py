@@ -50,9 +50,8 @@ async def echo(bot, update):
     url = update.text
     youtube_dl_username = None
     youtube_dl_password = None
-    file_name = cfname
-    cfname = update.text
-cfkeyboard = [pyrogram.InlineKeyboardButton("Custom Filename", callback_data=(cfname).encode("UTF-8"))]
+    file_name = update.text
+cfkeyboard = [pyrogram.InlineKeyboardButton("Custom Filename", callback_data=(file_name).encode("UTF-8"))]
 replymarkup = pyrogram.InlineKeyboardMarkup(cfkeyboard) 
 
     await bot.send_message(
