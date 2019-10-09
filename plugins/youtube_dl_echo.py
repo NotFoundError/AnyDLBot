@@ -53,12 +53,12 @@ async def echo(bot, update):
     file_name = cfname
     cfname = update.text
 cfkeyboard = [pyrogram.InlineKeyboardButton("Custom Filename", callback_data=(cfname).encode("UTF-8"))]
-reply_markup = pyrogram.InlineKeyboardMarkup(cfkeyboard) 
+replymarkup = pyrogram.InlineKeyboardMarkup(cfkeyboard) 
 
     await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.CFNAME,
-            reply_markup=reply_markup,
+            reply_markup=replymarkup,
             reply_to_message_id=update.message_id
         )
     
