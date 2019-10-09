@@ -50,25 +50,23 @@ async def echo(bot, update):
     url = update.text
     youtube_dl_username = None
     youtube_dl_password = None
-    file_name = None
-    if "|" in url:
-        url_parts = url.split("|")
-        if len(url_parts) == 2:
-            url = url_parts[0]
-            file_name = url_parts[1]
-        elif len(url_parts) == 4:
-            url = url_parts[0]
-            file_name = url_parts[1]
-            youtube_dl_username = url_parts[2]
-            youtube_dl_password = url_parts[3]
-        else:
-            for entity in update.entities:
-                if entity.type == "text_link":
-                    url = entity.url
-                elif entity.type == "url":
-                    o = entity.offset
-                    l = entity.length
-                    url = url[o:o + l]
+    file_name = cfname
+    cfname = update.text
+cfkeyboard = [
+                        pyrogram.InlineKeyboardButton(
+                            "Custom Filename",
+                            callback_data=(cfname).encode("UTF-8")
+                             )
+              ]
+reply_markup = pyrogram.InlineKeyboardMarkup(cfkeyboard) 
+
+    await bot.send_message(
+            chat_id=update.chat.id,
+            text=Translation.CFNAME,
+            reply_markup=reply_markup,
+            reply_to_message_id=update.message_id
+        )
+    
         if url is not None:
             url = url.strip()
         if file_name is not None:
